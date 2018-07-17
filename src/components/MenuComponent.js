@@ -3,7 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle } from 'reactstrap';
 import DishDetail from './DishDetailComponent';
 
-class Menu extends Component {
+export default class Menu extends Component {
     constructor(props) {
         super(props);
 
@@ -46,4 +46,3 @@ class Menu extends Component {
         );
     }
 }
-export default Menu;
