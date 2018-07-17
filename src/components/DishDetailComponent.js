@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 export default class DishDetail extends Component {
     constructor(props) {
@@ -10,7 +9,7 @@ export default class DishDetail extends Component {
     // if so, it will render the dish detail in Card components
     // NOTE: this event always gets invoked from the Render event
     renderDish(dish) {
-        if (dish)
+        if (dish) {
             return(
                 <Card>
                     <CardImg top src={dish.image} alt={dish.name} />
@@ -20,10 +19,11 @@ export default class DishDetail extends Component {
                     </CardBody>
                 </Card>
             );
-        else
+        } else {
             return(
                 <div></div>
             );
+        }
     }
     // this event will render all comments for a selected dish
     // first we need to validate that there is actually a selected dish to deal with
@@ -36,8 +36,8 @@ export default class DishDetail extends Component {
         const { dish } = this.props;             
         if(dish && dish.comments !== null) {
             const {comments} = dish;            
-               const commentList = comments.map((x,i) => {                       
-                  return (  
+            const commentList = comments.map((x,i) => {                       
+                return (  
                     <ul className="list-unstyled" key={i}>
                         <li>{x.comment}</li>                        
                         <li>&#45;&#45; {x.author}, {x.date.substr(0, 10)}</li> 
@@ -50,8 +50,7 @@ export default class DishDetail extends Component {
                   {commentList} 
                 </div>             
             );                                
-        }
-        else { 
+        } else { 
            return (
               <div></div>                
            );
