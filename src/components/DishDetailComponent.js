@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
+// This is a presentational component.  It will not maintain any state
 export default class DishDetail extends Component {
     constructor(props) {
         super(props);        
