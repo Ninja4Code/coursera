@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import Home from './HomeComponent';
 import { Menu } from './MenuComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { DishDetail } from './DishDetailComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
 
 // This is a container component that houses the Navbar, Menu and DishDetail
@@ -13,22 +13,27 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        dishes: DISHES,
-        selectedDish: null
+        dishes: DISHES
     };
   }
-  onDishSelect(dishId) {
-    this.setState({ selectedDish: dishId});
-  }
   render() {
-     const { dishes, selectedDish } = this.state;
+     const { dishes } = this.state;
+     const HomePage = () => {
+        return(
+          <Home 
+          />
+        );
+     }
     return (
       <div>
         <Header />
-        <Menu dishes={dishes} 
-            onClick={(dishId) => this.onDishSelect(dishId)} />
-        <DishDetail dish={dishes.filter(
-            (dish) => dish.id === selectedDish)[0]} />
+          <Switch>
+              <Route path='/home' component={HomePage} />
+               {/* Define a route with parameters */}
+              <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
+              {/* Define a default route */}
+              <Redirect to="/home" />
+          </Switch>        
         <Footer />
       </div>
     );
