@@ -11,13 +11,11 @@ export default class Header extends Component {
           isNavOpen: false
         };
       }
-
       toggleNav() {
         this.setState({
           isNavOpen: !this.state.isNavOpen
         });
       }
-
     render() {
         return(
             <div>

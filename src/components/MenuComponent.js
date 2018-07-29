@@ -1,5 +1,5 @@
 import React from 'react';
-import {MenuItem} from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 // This is a presentational component.  It will not maintain any state.
 export const Menu = (props) => {
@@ -24,4 +24,3 @@ export const Menu = (props) => {
             </div>
         );    
 }
-//export default Menu;
