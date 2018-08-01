@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import Home from './HomeComponent';
 import { Menu } from './MenuComponent';
-import Contact from './ContactComponent';
+import { DishWithId } from './DishWithId';
+import { Contact } from './ContactComponent';
+import { HomePage } from './HomePageComponent';
 import Header from './HeaderComponent';
-import Footer from './FooterComponent';
+import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
-
 // This is a container component that houses the Navbar, Menu and DishDetail
 // This component will contain the state for the application.
-export default class Main extends Component {
-
+export default class Main extends Component {  
   constructor(props) {
     super(props);
     this.state = {
@@ -24,25 +23,17 @@ export default class Main extends Component {
     };
   }
   render() {
-     const { dishes, promotions, leaders } = this.state;
-     const HomePage = () => {
-      return(
-          <Home 
-              dish={dishes.filter((dish) => dish.featured)[0]}
-              promotion={promotions.filter((promo) => promo.featured)[0]}
-              leader={leaders.filter((leader) => leader.featured)[0]}
-          />
-      );
-    }
-    return (
+     const { dishes, promotions, leaders, comments } = this.state;
+     return (
       <div>
         <Header />
           <Switch>
-              <Route path='/home' component={HomePage} />
-               {/* Define a route with parameters */}
+              <Route path='/home' component={() => 
+                   <HomePage dishes={dishes}  promotions={promotions} leaders={leaders}  />} /> 
               <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
               <Route exact path='/contactus' component={Contact} />} />
-              {/* Define a default route */}
+              <Route path='/menu/:dishId' component={({match}) => 
+                   <DishWithId dishes={dishes}  comments={comments} match={match}  />} />        
               <Redirect to="/home" />
           </Switch>        
         <Footer />
