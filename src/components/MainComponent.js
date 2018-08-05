@@ -3,6 +3,7 @@ import { Menu } from './MenuComponent';
 import { DishWithId } from './DishWithId';
 import { Contact } from './ContactComponent';
 import { HomePage } from './HomePageComponent';
+import { About } from './AboutComponent';
 import Header from './HeaderComponent';
 import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -32,6 +33,8 @@ export default class Main extends Component {
                    <HomePage dishes={dishes}  promotions={promotions} leaders={leaders}  />} /> 
               <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
               <Route exact path='/contactus' component={Contact} />} />
+              <Route exact path='/aboutus' component={() => 
+                   <About leaders={leaders}  />} /> 
               <Route path='/menu/:dishId' component={({match}) => 
                    <DishWithId dishes={dishes}  comments={comments} match={match}  />} />        
               <Redirect to="/home" />
