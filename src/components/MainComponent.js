@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from './MenuComponent';
 import { DishWithId } from './DishWithId';
-import { Contact } from './ContactComponent';
+import Contact from './ContactComponent';
 import { HomePage } from './HomePageComponent';
 import { About } from './AboutComponent';
 import Header from './HeaderComponent';
@@ -11,6 +11,7 @@ import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
+import { required, minLength, maxLength, validEmail } from '../shared/validationUtils';
 // This is a container component that houses the Navbar, Menu and DishDetail
 // This component will contain the state for the application.
 export default class Main extends Component {  
@@ -22,6 +23,7 @@ export default class Main extends Component {
         promotions: PROMOTIONS,
         leaders: LEADERS
     };
+    
   }
   render() {
      const { dishes, promotions, leaders, comments } = this.state;
