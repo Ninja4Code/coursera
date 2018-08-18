@@ -83,9 +83,10 @@ export default class Contact extends Component {
     render() {
         // this is an error object that will be used to populate the feedback element
         // in order to display validation errors
-        const errors = this.validate(
-            this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
-        return(
+        const { firstname, lastname, telnum, email } = this.state;
+        const errors = this.validate(firstname, lastname, telnum, email);
+
+        return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -134,7 +135,7 @@ export default class Contact extends Component {
                                 <Col md={10}>
                                     <Input type="text" id="firstname" name="firstname"
                                         placeholder="First Name"
-                                        value={this.state.firstname}
+                                        value={firstname}
                                         valid={errors.firstname === ''}
                                         invalid={errors.firstname !== ''}
                                         onBlur={this.handleBlur('firstname')}
@@ -147,7 +148,7 @@ export default class Contact extends Component {
                                 <Col md={10}>
                                     <Input type="text" id="lastname" name="lastname"
                                         placeholder="Last Name"
-                                        value={this.state.lastname}
+                                        value={lastname}
                                         valid={errors.lastname === ''}
                                         invalid={errors.lastname !== ''}
                                         onBlur={this.handleBlur('lastname')}
@@ -160,7 +161,7 @@ export default class Contact extends Component {
                                 <Col md={10}>
                                     <Input type="tel" id="telnum" name="telnum"
                                         placeholder="Tel. Number"
-                                        value={this.state.telnum}
+                                        value={telnum}
                                         valid={errors.telnum === ''}
                                         invalid={errors.telnum !== ''}
                                         onBlur={this.handleBlur('telnum')}
@@ -173,7 +174,7 @@ export default class Contact extends Component {
                                 <Col md={10}>
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
-                                        value={this.state.email}
+                                        value={email}
                                         valid={errors.email === ''}
                                         invalid={errors.email !== ''}
                                         onBlur={this.handleBlur('email')}
