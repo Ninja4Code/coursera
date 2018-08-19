@@ -6,27 +6,26 @@ import { HomePage } from './HomePageComponent';
 import { About } from './AboutComponent';
 import Header from './HeaderComponent';
 import { Footer } from './FooterComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { DISHES } from '../shared/dishes';
-import { COMMENTS } from '../shared/comments';
-import { PROMOTIONS } from '../shared/promotions';
-import { LEADERS } from '../shared/leaders';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { required, minLength, maxLength, validEmail } from '../shared/validationUtils';
+
+const mapStateToProps = state => {
+  return {
+    dishes: state.dishes,
+    leaders: state.leaders,
+    promotions: state.promotions,
+    comments: state.comments
+  }    
+}
 // This is a container component that houses the Navbar, Menu and DishDetail
 // This component will contain the state for the application.
-export default class Main extends Component {  
+class Main  extends Component  {  
   constructor(props) {
-    super(props);
-    this.state = {
-        dishes: DISHES,
-        comments: COMMENTS,
-        promotions: PROMOTIONS,
-        leaders: LEADERS
-    };
-    
-  }
+    super(props);      
+  }  
   render() {
-     const { dishes, promotions, leaders, comments } = this.state;
+     const { dishes, promotions, leaders, comments } = this.props;
      return (
       <div>
         <Header />
@@ -46,3 +45,4 @@ export default class Main extends Component {
     );
   }
 }
+export default withRouter(connect(mapStateToProps)(Main));

@@ -33,7 +33,7 @@ export default class Header extends Component {
         event.preventDefault();
     }
     render() {
-        return(
+        return (
             <React.Fragment>
                 <Navbar dark expand="md">
                     <div className="container">
