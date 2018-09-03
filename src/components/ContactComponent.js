@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Row, Col, Label } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';          
 import { Link } from 'react-router-dom';
+import { REQUIRED, MIN_LENGTH, MAX_LENGTH, IS_NUMBER, VALID_EMAIL } from '../shared/validationUtils';
 
 // This is an example of a react redux form without form validation
 // state and validation will be performed by react-redux-form rather than be 
@@ -68,7 +69,20 @@ export default class Contact extends Component {
                                     <Control.text model=".firstname" id="firstname" name="firstname"
                                         placeholder="First Name"
                                         className="form-control"
-                                         />
+                                        validators={{
+                                            REQUIRED, MIN_LENGTH: MIN_LENGTH(3), MAX_LENGTH: MAX_LENGTH(15)
+                                        }}
+                                    />
+                                     <Errors
+                                        className="text-danger"
+                                        model=".firstname"
+                                        show="touched"
+                                        messages={{
+                                            REQUIRED: 'Required',
+                                            MIN_LENGTH: 'Must be greater than 2 characters',
+                                            MAX_LENGTH: 'Must be 15 characters or less'
+                                        }}
+                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -77,7 +91,20 @@ export default class Contact extends Component {
                                     <Control.text model=".lastname" id="lastname" name="lastname"
                                         placeholder="Last Name"
                                         className="form-control"
-                                         />
+                                        validators={{
+                                            REQUIRED, MIN_LENGTH: MIN_LENGTH(3), MAX_LENGTH: MAX_LENGTH(15)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".lastname"
+                                        show="touched"
+                                        messages={{
+                                            REQUIRED: 'Required',
+                                            MIN_LENGTH: 'Must be greater than 2 characters',
+                                            MAX_LENGTH: 'Must be 15 characters or less'
+                                        }}
+                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -86,7 +113,22 @@ export default class Contact extends Component {
                                     <Control.text model=".telnum" id="telnum" name="telnum"
                                         placeholder="Tel. Number"
                                         className="form-control"
-                                         />
+                                        validators={{
+                                            REQUIRED, MIN_LENGTH: MIN_LENGTH(3), 
+                                            MAX_LENGTH: MAX_LENGTH(15), IS_NUMBER
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".telnum"
+                                        show="touched"
+                                        messages={{
+                                            REQUIRED: 'Required',
+                                            MIN_LENGTH: 'Must be greater than 2 numbers',
+                                            MAX_LENGTH: 'Must be 15 numbers or less',
+                                            IS_NUMBER: 'Must be a number'
+                                        }}
+                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -94,7 +136,20 @@ export default class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" name="email"
                                         placeholder="Email"
-                                        className="form-control" />
+                                        className="form-control"
+                                        validators={{
+                                            REQUIRED, VALID_EMAIL
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".email"
+                                        show="touched"
+                                        messages={{
+                                            REQUIRED: 'Required',
+                                            VALID_EMAIL: 'Invalid Email Address'
+                                        }}
+                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">

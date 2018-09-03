@@ -8,7 +8,6 @@ import Header from './HeaderComponent';
 import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { required, minLength, maxLength, validEmail } from '../shared/validationUtils';
 
 const mapStateToProps = state => {
   return {

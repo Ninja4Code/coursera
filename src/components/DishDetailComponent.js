@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import CommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
 
     // This is a presentational component.  It will not maintain any state
@@ -14,9 +15,8 @@ import { Link } from 'react-router-dom';
     // if a selected dish isn't available or we don't have any comments for the dish
     // just render an empty div    
     export const DishDetail = (props) => {
-        const renderDish = (dish) => {
-            if (dish) {
-                return(
+        const renderDish = (dish={}) => {
+            return (
                     <Card>
                         <CardImg top src={dish.image} alt={dish.name} />
                         <CardBody>
@@ -24,16 +24,10 @@ import { Link } from 'react-router-dom';
                           <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
-                );
-            } else {
-                return(
-                    <div></div>
-                );
-            }
+            );           
         }
-        const renderComments = (comments) => {
-             if(comments !== null) {
-                const commentList = comments.map((x,i) => {                       
+        const renderComments = (comments={}) => {
+            const commentList = comments.map((x,i) => {                       
                     return (  
                         <ul className="list-unstyled" key={i}>
                             <li>{x.comment}</li>                        
@@ -45,13 +39,9 @@ import { Link } from 'react-router-dom';
                     <div>
                       <h4>Comments</h4>
                       {commentList} 
+                      <CommentForm />
                     </div>             
-                );                                
-            } else { 
-               return (
-                  <div></div>                
-               );
-            }
+                );          
         }
         return (
             <div className="container">
