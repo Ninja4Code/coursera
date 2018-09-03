@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom';
                     </Card>
             );           
         }
-        const renderComments = (comments={}) => {
+        const renderComments = (comments={}, addComment) => {
             const commentList = comments.map((x,i) => {                       
                     return (  
                         <ul className="list-unstyled" key={i}>
@@ -39,7 +39,7 @@ import { Link } from 'react-router-dom';
                     <div>
                       <h4>Comments</h4>
                       {commentList} 
-                      <CommentForm />
+                      <CommentForm addComment={addComment} dishId={props.dish.id} />
                     </div>             
                 );          
         }
@@ -60,7 +60,7 @@ import { Link } from 'react-router-dom';
                         {renderDish(props.dish)}
                     </div>
                     <div  className="col-12 col-md-5 m-1">
-                        {renderComments(props.comments)} 
+                        {renderComments(props.comments, props.addComment)} 
                     </div>
                 </div>
             </div>

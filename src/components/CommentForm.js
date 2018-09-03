@@ -6,7 +6,7 @@ import { REQUIRED, MIN_LENGTH, MAX_LENGTH } from '../shared/validationUtils';
 export default class CommentForm extends Component {
     constructor(props) {
         super(props);
-        
+        console.log(this.props);
         this.state = {
             isModalOpen: false
         };        
@@ -19,7 +19,9 @@ export default class CommentForm extends Component {
         }); 
     }
     handleSubmit(values){
-        console.log(`Form values: ${JSON.stringify(values)}`);
+       // console.log(`Form values: ${JSON.stringify(values)}`);
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, parseInt(values.rating), values.author, values.comment);
     }
     render() {
         return (
