@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import CommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
     // This is a presentational component.  It will not maintain any state
     // this event checks to see that a dish object exists in props
@@ -43,7 +44,24 @@ import { Link } from 'react-router-dom';
                     </div>             
                 );          
         }
-        return (
+        if(props.isLoading){
+            return (
+              <div className="container">
+                <div className="row">
+                   <Loading />
+                </div>
+              </div>
+            );
+        } else if(props.errMess){
+            return (
+                <div className="container">
+                  <div className="row">
+                     <h4>{props.errMess}</h4>
+                  </div>
+                </div>
+              );
+        }else  if(props.dish !== null){
+        return (            
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -64,5 +82,9 @@ import { Link } from 'react-router-dom';
                     </div>
                 </div>
             </div>
-        );    
+        );   } else {
+            return (
+               <div>No Dish to Render</div>
+            );
+        } 
 }

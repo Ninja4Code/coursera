@@ -2,6 +2,7 @@ import React from 'react';
 import { MenuItem } from './MenuItem';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
 // This is a presentational component.  It will not maintain any state.
 export const Menu = (props) => {
@@ -11,13 +12,30 @@ export const Menu = (props) => {
         // The menu content will then be displayed in the first div under the container
         // div in the return statement.
         // NOTE: This does NOT display any detail!
-        const menu = props.dishes.map((dish) => {
+        const menu = props.dishes.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1" key={dish.id}>
                    <MenuItem dish={dish}  />               
               </div>
             );
         });
+        if(props.isLoading){
+            return (
+              <div className="container">
+                <div className="row">
+                   <Loading />
+                </div>
+              </div>
+            );
+        } else if(props.dishes.errMess){
+            return (
+                <div className="container">
+                  <div className="row">
+                     <h4>{props.dishes.errMess}</h4>
+                  </div>
+                </div>
+              );
+            } else {
         return (
             <div className="container">
                 <div className="row">
@@ -34,5 +52,6 @@ export const Menu = (props) => {
                     {menu}
                 </div>
             </div>
-        );    
+        );  
+        }  
 }

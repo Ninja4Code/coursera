@@ -8,7 +8,8 @@ import Header from './HeaderComponent';
 import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment } from '../redux/ActionCreators';
+//import { addComment } from '../redux/ActionCreators';
+import { addComment, fetchDishes } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return {
@@ -22,14 +23,18 @@ const mapDispatchToProps = dispatch => ({
   addComment: (dishId, rating, author, comment) => {
     dispatch(addComment(dishId, rating, author, comment));
     //console.log("Add comment event called");
-  }
+  },
+  fetchDishes:()=>{dispatch(fetchDishes())}
 });
 // This is a container component that houses the Navbar, Menu and DishDetail
 // This component will contain the state for the application.
-class Main  extends Component  {  
+class Main  extends Component  { 
   constructor(props) {
     super(props);      
   }  
+  componentDidMount(){
+    this.props.fetchDishes();
+  }
   render() {
      const { dishes, promotions, leaders, comments } = this.props;
      return (
