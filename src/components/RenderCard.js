@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle} from 'react
 import {Loading} from './LoadingComponent';
 
 export const RenderCard = (props) => {
-    const { item,isLoading, errMess } = props;    
+    const { item, isLoading, errMess } = props;    
     if(isLoading){
         return (
           <Loading />
@@ -13,7 +13,7 @@ export const RenderCard = (props) => {
             <h4>{errMess}</h4>
         );
     } else {
-       return (        
+       return ( 
           <Card>
             <CardImg src={item.image} alt={item.name} />
             <CardBody>

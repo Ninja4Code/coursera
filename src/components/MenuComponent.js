@@ -12,14 +12,15 @@ export const Menu = (props) => {
         // The menu content will then be displayed in the first div under the container
         // div in the return statement.
         // NOTE: This does NOT display any detail!
-        const menu = props.dishes.dishes.map((dish) => {
+        const {dishes, isLoading} = props;
+        const menu = dishes.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1" key={dish.id}>
                    <MenuItem dish={dish}  />               
               </div>
             );
         });
-        if(props.isLoading){
+        if(isLoading){
             return (
               <div className="container">
                 <div className="row">
@@ -27,11 +28,11 @@ export const Menu = (props) => {
                 </div>
               </div>
             );
-        } else if(props.dishes.errMess){
+        } else if(dishes.errMess){
             return (
                 <div className="container">
                   <div className="row">
-                     <h4>{props.dishes.errMess}</h4>
+                     <h4>{dishes.errMess}</h4>
                   </div>
                 </div>
               );
