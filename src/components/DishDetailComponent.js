@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import CommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
     // This is a presentational component.  It will not maintain any state
     // this event checks to see that a dish object exists in props
@@ -20,7 +21,15 @@ import { Loading } from './LoadingComponent';
         const renderDish = (dish={}) => {
             return (
                     <Card>
-                        <CardImg top src={dish.image} alt={dish.name} />
+                       {/* These are the menu images that display when we click
+                            when we click on a specific menu item, i.e.
+                            http://localhost:3000/menu/0 
+                            NOTE: baseUrl is pointing to the place on the json-server,
+                            i.e. http://localhost:3001/assets/images
+                            and c:\development\javascript\json-server\public\asset\images
+                            where we are getting the images instead of within the project
+                        */}
+                        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                         <CardBody>
                           <CardTitle>{dish.name}</CardTitle>
                           <CardText>{dish.description}</CardText>

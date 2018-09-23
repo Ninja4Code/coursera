@@ -9,7 +9,9 @@ export const HomePage = (props) => {
                 dish={dishes.dishes.filter((dish) => dish.featured)[0]}
                 dishesLoading={dishes.isLoading}
                 dishesErrMess={dishes.errMess}
-                promotion={promotions.filter((promo) => promo.featured)[0]}                              
+                promotion={promotions.promotions.filter((promo) => promo.featured)[0]}   
+                promoLoading={promotions.isLoading}
+                promoErrMess={promotions.errMess}                                         
                 leader={leaders.filter((leader) => leader.featured)[0]}   
             />             
         </React.Fragment>
