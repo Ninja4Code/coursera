@@ -16,6 +16,7 @@ import { Loading } from './LoadingComponent';
     // if a selected dish isn't available or we don't have any comments for the dish
     // just render an empty div    
     export const DishDetail = (props) => {
+        const {isLoading, errMess, dish, comments, addComment} = props;
         const renderDish = (dish={}) => {
             return (
                     <Card>
@@ -44,7 +45,7 @@ import { Loading } from './LoadingComponent';
                     </div>             
                 );          
         }
-        if(props.isLoading){
+        if(isLoading){
             return (
               <div className="container">
                 <div className="row">
@@ -52,33 +53,33 @@ import { Loading } from './LoadingComponent';
                 </div>
               </div>
             );
-        } else if(props.errMess){
+        } else if(errMess){
             return (
                 <div className="container">
                   <div className="row">
-                     <h4>{props.errMess}</h4>
+                     <h4>{errMess}</h4>
                   </div>
                 </div>
               );
-        } else  if(props.dish !== null){
+        } else  if(dish !== null){
         return (            
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
-                        <h3>{props.dish.name}</h3>
+                        <h3>{dish.name}</h3>
                         <hr />
                     </div>                
                 </div>
                 <div className="row">                  
                     <div  className="col-12 col-md-5 m-1">
-                        {renderDish(props.dish)}
+                        {renderDish(dish)}
                     </div>
                     <div  className="col-12 col-md-5 m-1">
-                        {renderComments(props.comments, props.addComment)} 
+                        {renderComments(comments, addComment)} 
                     </div>
                 </div>
             </div>

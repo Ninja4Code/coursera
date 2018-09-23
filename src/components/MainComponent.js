@@ -36,7 +36,7 @@ class Main  extends Component  {
     this.props.fetchDishes();
   }
   render() {
-     const { dishes, promotions, leaders, comments } = this.props;
+     const { dishes, promotions, leaders, comments, resetFeedbackForm, addComment } = this.props;
      return (
       <div>
         <Header />
@@ -44,13 +44,12 @@ class Main  extends Component  {
               <Route path='/home' component={() => 
                    <HomePage dishes={dishes}  promotions={promotions} leaders={leaders}  />} /> 
               <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
-             {/* <Route exact path='/contactus' component={Contact} />} />*/}
-              <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+              <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={resetFeedbackForm} />} />
               <Route exact path='/aboutus' component={() => 
                    <About leaders={leaders}  />} /> 
               <Route path='/menu/:dishId' component={({match}) => 
                    <DishWithId dishes={dishes} 
-                    comments={comments} match={match} addComment={this.props.addComment}  />} />        
+                    comments={comments} match={match} addComment={addComment}  />} />        
               <Redirect to="/home" />
           </Switch>        
         <Footer />
