@@ -20,9 +20,9 @@ export default class CommentForm extends Component {
     }
     handleSubmit(values){
         this.toggleModal();
-        const {rating, author, comment} = values;
-        const {addComment, dishId} = this.props;
-        addComment(dishId, parseInt(rating), author, comment);
+        const {rating, author, comment} = values;       
+        const {postComment, dishId} = this.props;       
+        postComment(dishId, parseInt(rating), author, comment);
     }
     render() {
         return (

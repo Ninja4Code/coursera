@@ -4,6 +4,7 @@ import CommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
     // This is a presentational component.  It will not maintain any state
     // this event checks to see that a dish object exists in props
@@ -17,9 +18,13 @@ import { baseUrl } from '../shared/baseUrl';
     // if a selected dish isn't available or we don't have any comments for the dish
     // just render an empty div    
     export const DishDetail = (props) => {
-        const {isLoading, errMess, dish, comments, addComment} = props;
+        const {isLoading, errMess, dish, comments, postComment} = props;
         const renderDish = (dish={}) => {
             return (
+                <FadeTransform in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
                     <Card>
                        {/* These are the menu images that display when we click
                             when we click on a specific menu item, i.e.
@@ -35,22 +40,29 @@ import { baseUrl } from '../shared/baseUrl';
                           <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
+                </FadeTransform>
             );           
         }
-        const renderComments = (comments={}, addComment) => {
-            const commentList = comments.map((x,i) => {                       
+        const renderComments = (comments={}, postComment) => {
+            const commentList = comments.map((x,i) => { 
+                                    
                     return (  
                         <ul className="list-unstyled" key={i}>
-                            <li>{x.comment}</li>                        
-                            <li>&#45;&#45; {x.author}, {x.date.substr(0, 10)}</li> 
+                            <Fade in>
+                                <li>{x.comment}</li>                        
+                                <li>&#45;&#45; {x.author}, {x.date.substr(0, 10)}</li>
+                            </Fade> 
                         </ul>          
                       );
                     }); 
+                
                 return (
                     <div>
                       <h4>Comments</h4>
-                      {commentList} 
-                      <CommentForm addComment={addComment} dishId={props.dish.id} />
+                      <Stagger in>
+                        {commentList} 
+                      </Stagger>
+                      <CommentForm postComment={postComment} dishId={dish.id} />
                     </div>             
                 );          
         }
@@ -88,7 +100,7 @@ import { baseUrl } from '../shared/baseUrl';
                         {renderDish(dish)}
                     </div>
                     <div  className="col-12 col-md-5 m-1">
-                        {renderComments(comments, addComment)} 
+                       {renderComments(comments, postComment)}
                     </div>
                 </div>
             </div>
