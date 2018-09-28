@@ -1,12 +1,5 @@
-import { DISHES } from '../shared/dishes';
 import * as ActionTypes from './ActionTypes';
 
-/*export const Dishes = (state = DISHES, action) => {
-    switch (action.type) {
-        default:
-          return state;
-      }
-};*/
 export const Dishes = (state = {isLoading:true,errMess:null,dishes:[]}, action) => {
     switch (action.type) {
         case ActionTypes.ADD_DISHES:
@@ -19,7 +12,6 @@ export const Dishes = (state = {isLoading:true,errMess:null,dishes:[]}, action) 
             return {...state, isLoading: false, errMess: action.payload};
 
         default:
-             return state;
-         //return DISHES;
+             return state;         
     }
 };

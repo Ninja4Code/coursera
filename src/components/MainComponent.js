@@ -8,7 +8,7 @@ import Header from './HeaderComponent';
 import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { postComment, postFeedback, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -27,7 +27,11 @@ const mapDispatchToProps = dispatch => ({
   fetchDishes:()=>{dispatch(fetchDishes())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
-  fetchPromos: () => dispatch(fetchPromos())
+  fetchPromos: () => dispatch(fetchPromos()),
+  fetchLeaders: () => dispatch(fetchLeaders()),
+  postFeedback: (feedback) => {
+    dispatch(postFeedback(feedback));    
+  },
 });
 // This is a container component that houses the Navbar, Menu and DishDetail
 // This component will contain the state for the application.
@@ -39,9 +43,10 @@ class Main  extends Component  {
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
+    this.props.fetchLeaders();    
   }
   render() {
-     const { dishes, promotions, leaders, comments, resetFeedbackForm, postComment } = this.props;
+     const { dishes, promotions, leaders, comments, resetFeedbackForm, postComment, postFeedback } = this.props;     
      return (
       <div>
         <Header />
@@ -51,7 +56,7 @@ class Main  extends Component  {
                 <Route path='/home' component={() => 
                    <HomePage dishes={dishes}  promotions={promotions} leaders={leaders}  />} /> 
                 <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
-                <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={resetFeedbackForm} />} />
+                <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={resetFeedbackForm} postFeedback={postFeedback}/>} />
                 <Route exact path='/aboutus' component={() => 
                    <About leaders={leaders}  />} /> 
                 <Route path='/menu/:dishId' component={({match}) => 

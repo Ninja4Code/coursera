@@ -12,7 +12,9 @@ export const HomePage = (props) => {
                 promotion={promotions.promotions.filter((promo) => promo.featured)[0]}   
                 promoLoading={promotions.isLoading}
                 promoErrMess={promotions.errMess}                                         
-                leader={leaders.filter((leader) => leader.featured)[0]}   
+                leader={leaders.leaders.filter((leader) => leader.featured)[0]} 
+                leaderLoading={leaders.isLoading}
+                leaderErrMess={leaders.errMess}    
             />             
         </React.Fragment>
     );

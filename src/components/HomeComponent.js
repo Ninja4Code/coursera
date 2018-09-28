@@ -1,8 +1,9 @@
 import React from 'react';
-import {RenderCard} from './RenderCard';
+import { RenderCard } from './RenderCard';
 
 export const Home =(props) => {
-    const {dish, promotion, leader, dishesLoading, dishesErrMess, promoLoading, promoErrMess} = props;
+    const { dish, promotion, leader, dishesLoading, dishesErrMess, 
+            promoLoading, promoErrMess, leaderLoading, leaderErrMess } = props;
     return (
         <div className="container">
             <div className="row align-items-start">
@@ -13,7 +14,7 @@ export const Home =(props) => {
                     <RenderCard item={promotion} isLoading={promoLoading} errMess={promoErrMess} />
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={leader} />
+                    <RenderCard item={leader} isLoading={leaderLoading} errMess={leaderErrMess}/>
                 </div>
             </div>
         </div>

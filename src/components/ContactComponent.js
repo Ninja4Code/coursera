@@ -16,8 +16,21 @@ export default class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);              
     }   
     handleSubmit(values) {    
-        console.log('Current State is: ' + JSON.stringify(values)); 
-        this.props.resetFeedbackForm();           
+        const {firstname, lastname, telnum, email, agree, contactType, message} = values;  
+        const {postFeedback, resetFeedbackForm} = this.props; 
+        let feedback = {
+            firstname: firstname,
+            lastname: lastname,
+            telnum: telnum,
+            email: email,
+            agree: agree,
+            contactType: contactType,
+            message: message,
+            date: new Date().toISOString()
+        }; 
+       
+        postFeedback(feedback);          
+        resetFeedbackForm();                
     }   
     render() {
       return (
