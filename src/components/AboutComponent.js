@@ -3,9 +3,10 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { RenderLeader } from './RenderLeader';
 import { Link } from 'react-router-dom';
 import { Fade, Stagger } from 'react-animation-components';
+import { Loading } from './LoadingComponent';
 
 export const About = (props) => {
-
+    const {isLoading, errMess} = props;
     const leaders = props.leaders.leaders.map((leader) => {
         return ( 
             <Fade in>      
@@ -13,6 +14,23 @@ export const About = (props) => {
             </Fade>
         );
     });
+    if(isLoading){
+        return (
+          <div className="container">
+            <div className="row">
+               <Loading />
+            </div>
+          </div>
+        );
+    } else if(errMess){
+        return (
+            <div className="container">
+              <div className="row">
+                 <h4>{errMess}</h4>
+              </div>
+            </div>
+          );
+    } else  if(leaders !== null) {
     return(
         <div className="container">
             <div className="row">
@@ -77,4 +95,5 @@ export const About = (props) => {
             </div>
         </div>
     );
+    }
 }    

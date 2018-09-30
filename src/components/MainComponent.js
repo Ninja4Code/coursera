@@ -58,7 +58,7 @@ class Main  extends Component  {
                 <Route exact path='/menu' component={() => <Menu dishes={dishes} />} />
                 <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={resetFeedbackForm} postFeedback={postFeedback}/>} />
                 <Route exact path='/aboutus' component={() => 
-                   <About leaders={leaders}  />} /> 
+                   <About leaders={leaders}  isLoading={leaders.isLoading} errMess={leaders.errMess}  />} /> 
                 <Route path='/menu/:dishId' component={({match}) => 
                    <DishWithId dishes={dishes} 
                     comments={comments} match={match} postComment={postComment}  />} />        
